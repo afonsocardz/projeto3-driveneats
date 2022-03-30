@@ -41,17 +41,27 @@ ul {
     display: flex;
     cursor: grab;
     overflow: hidden;
-    padding-bottom: 1px;
+    
 }
 
 li{
     display: flex;
     flex-direction: column;
-    transition: border 0.2s ease-in;
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease-in;
 }
 
 li.active{
-    border: 1px solid green;
+    background-color: #32B72F;
+}
+
+.item-box{
+    padding: 10px;
+    border-radius: 5px;
+    background-color: white;
+    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.25));
 }
 
 img{

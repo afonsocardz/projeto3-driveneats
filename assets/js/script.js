@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const ele = document.getElementById('list');
 
-    let pos = { top: 0, left: 0, x: 0, y: 0 };
+    let pos = { left: 0, x: 0};
 
     const mouseDownHandler = function (e) {
         ele.style.cursor = 'grabbing';
@@ -10,10 +10,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         pos = {
             left: ele.scrollLeft,
-            top: ele.scrollTop,
+            
             // Get the current mouse position
             x: e.clientX,
-            y: e.clientY,
+            
         };
 
         document.addEventListener('mousemove', mouseMoveHandler);
@@ -23,10 +23,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const mouseMoveHandler = function (e) {
         // How far the mouse has been moved
         const dx = e.clientX - pos.x;
-        const dy = e.clientY - pos.y;
+        
 
         // Scroll the element
-        ele.scrollTop = pos.top - dy;
+        
         ele.scrollLeft = pos.left - dx;
     };
 
@@ -43,7 +43,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //select one item
 
-    const links = document.querySelectorAll('#dishes ul li');
+    let allChecked = false;
+    const dishes = document.getElementById("dish");
+    let hasDishes = false;
+    let drinks = false;
+    let diserts = false;
+
+    const links = document.querySelectorAll('#dishes > ul li');
 
     links.forEach((link) => {
         link.addEventListener('click', () => {
@@ -56,6 +62,14 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             link.classList.add('active');
+
+            hasDishes =  dishes.classList.contains('active');
+
+            if(hasDishes){
+                allChecked = true;
+            }
+
+            
         });
     });
 

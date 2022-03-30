@@ -18,10 +18,20 @@ body {
 
 /* LIST OF ITEMS */
 
+.item-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 ul {
-    width: 200px;
-    height: 200px;
-    margin: 50px;
+    width: 100%;
+    display: flex;
     cursor: grab;
     overflow: hidden;
+    padding-bottom: 1px;
+}
+
+img{
+    -webkit-user-drag: none;
 }

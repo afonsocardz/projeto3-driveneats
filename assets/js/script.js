@@ -1,7 +1,6 @@
 
 document.addEventListener('DOMContentLoaded', function () {
     const ele = document.getElementById('list');
-    ele.style.cursor = 'grab';
 
     let pos = { top: 0, left: 0, x: 0, y: 0 };
 
@@ -41,4 +40,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Attach the handler
     ele.addEventListener('mousedown', mouseDownHandler);
+
+    //select one item
+
+    const links = document.querySelectorAll('#dishes ul li');
+
+    links.forEach((link) => {
+        link.addEventListener('click', () => {
+            const notClickedLinks = Array.from(links).filter((notClickedLink) => {
+                return notClickedLink !== link;
+            });
+
+            notClickedLinks.forEach((notClickedLink) => {
+                notClickedLink.classList.remove('active');
+            });
+
+            link.classList.add('active');
+        });
+    });
+
+    //button active
+
+    const element = document.getElementById("order-button");
+
+    const buttonActive = function () {
+        element.classList.add("active");
+    };
+
+    element.addEventListener('click', buttonActive);
 });

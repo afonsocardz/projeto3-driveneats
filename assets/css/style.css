@@ -1,5 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
+button,
+input[type="submit"],
+input[type="reset"] {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -19,7 +31,7 @@ body {
 /* LIST OF ITEMS */
 
 .item-container{
-    width: 100%;
+    width: 200px;
     display: flex;
     flex-direction: column;
 }
@@ -32,6 +44,31 @@ ul {
     padding-bottom: 1px;
 }
 
+li{
+    display: flex;
+    flex-direction: column;
+    transition: border 0.2s ease-in;
+}
+
+li.active{
+    border: 1px solid green;
+}
+
 img{
     -webkit-user-drag: none;
+}
+
+/* ORDER BUTTON */
+
+button{
+    border-radius: 15px;
+    height: 52px;
+    padding: 0 20px;
+    background: #bbbbbb;
+    color: white;
+    transition: background 0.2s ease-in;
+}
+
+button.active{
+    background: green ;
 }

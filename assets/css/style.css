@@ -8,10 +8,20 @@ h1 {
     font-family: 'Righteous', cursive;
 }
 
-body{
+body {
     font-family: 'Roboto', sans-serif;
 }
 
 .modal {
     display: none;
+}
+
+/* LIST OF ITEMS */
+
+ul {
+    width: 200px;
+    height: 200px;
+    margin: 50px;
+    cursor: grab;
+    overflow: hidden;
 }

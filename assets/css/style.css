@@ -11,3 +11,7 @@ h1 {
 body{
     font-family: 'Roboto', sans-serif;
 }
+
+.modal {
+    display: none;
+}

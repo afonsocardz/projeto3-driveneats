@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
             document.addEventListener('mousemove', mouseMoveHandler);
             document.addEventListener('mouseup', mouseUpHandler);
+            
         };
     
         const mouseMoveHandler = function (e) {
@@ -35,10 +36,12 @@ document.addEventListener('DOMContentLoaded', function () {
     
             document.removeEventListener('mousemove', mouseMoveHandler);
             document.removeEventListener('mouseup', mouseUpHandler);
+            
         };
     
         // Attach the handler
         ele.addEventListener('mousedown', mouseDownHandler);
+        
     });
     
 
@@ -101,19 +104,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
         }
-        target.classList.add("active");
-
+        if (target.nodeName == li.nodeName){
+            target.classList.add("active");
+        }
+        
     }
-
-
 
     //button active
 
-    const element = document.getElementById("order-button");
+    const buttonCheck = document.getElementById("order-button");
 
     const buttonActive = function () {
-        element.classList.add("active");
+        
+                buttonCheck.classList.add("active");
+                
+       
     };
 
-    element.addEventListener('click', buttonActive);
+    buttonCheck.addEventListener('click', buttonActive);
 });

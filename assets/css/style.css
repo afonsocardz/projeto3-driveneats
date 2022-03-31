@@ -18,6 +18,7 @@ input[type="reset"] {
 
 h1 {
     font-family: 'Righteous', cursive;
+    font-size: 35px;
 }
 
 body {
@@ -28,6 +29,16 @@ body {
     display: none;
 }
 
+/* TOPBAR */
+.topbar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: red;
+    height: 54px;
+    color: white;
+}
+
 /* LIST OF ITEMS */
 
 .item-container{
@@ -36,12 +47,14 @@ body {
     flex-direction: column;
 }
 
+#list {
+    cursor: grab;
+    overflow: hidden;
+}
+
 ul {
     width: 100%;
     display: flex;
-    cursor: grab;
-    overflow: hidden;
-    
 }
 
 li{

@@ -107,6 +107,7 @@ li.active{
     background-color: #32B72F;
 }
 
+
 .item-box{
     display: flex;
     flex-direction: column;
@@ -116,10 +117,12 @@ li.active{
     border-radius: 5px;
     background-color: white;
     filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.25));
+    pointer-events: none;
 }
 
 .item-box > * {
     margin: 4px 0;
+    pointer-events: none;
 }
 
 .item-box>span{

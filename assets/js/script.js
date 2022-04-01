@@ -38,6 +38,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     });
 });
+
+
+
 function selectedItem(elemento) {
     let isSelected;
     let parent = elemento.parentElement;
@@ -48,10 +51,11 @@ function selectedItem(elemento) {
     //possivel selecionar e deselecionar
     elemento.classList.add("active");
 
-    
+
     if (isSelected !== null) {
         isSelected.classList.remove("active");
     }
+    checkOrder();
 }
 
 const checkOrder = () => {
@@ -66,6 +70,66 @@ const checkOrder = () => {
     }
 }
 
-window.addEventListener("click", checkOrder);
 
+const makeOrder = () => {
+    let valores = [];
+    let item = [];
+    let totalPedido = 0;
+    const choosedElements = document.querySelectorAll("li.active .item-box");
+    const table = document.querySelector("table tbody")
+    let linhaTotal = document.createElement("tr");
+    let colunaTotal = document.createElement("td");
+    let colunaSoma = document.createElement("td");
 
+    console.log("fora")
+
+    choosedElements.forEach(element => {
+        let colunaName = document.createElement("td");
+        let colunaValue = document.createElement("td");
+        let linha = document.createElement("tr");
+        console.log("dentro")
+        item.push(element.children[1].outerText);
+        item.push(element.children[3].outerText);
+        let valor = item[1].replace("R$", "");
+        valor = valor.replace(",", ".");
+        valor = Number(valor);
+        valores.push(valor);
+
+        //criar colunas e linha
+        //add product name column
+        colunaName.textContent = item[0];
+        linha.append(colunaName);
+
+        //add value column
+        colunaValue.textContent = item[1];
+        linha.append(colunaValue);
+
+        table.append(linha);
+
+    });
+
+    valores.forEach(valor => {
+        totalPedido = totalPedido + valor;
+    });
+
+    colunaTotal.textContent = "Total";
+    
+    totalPedido = totalPedido.toFixed(2);
+    totalPedido = totalPedido.toString().replace(".",",");
+    colunaSoma.textContent = `R$${totalPedido}`;
+    linhaTotal.append(colunaTotal);
+    linhaTotal.append(colunaSoma);
+    table.append(linhaTotal);
+}
+const button = document.getElementById("order-button");
+
+button.addEventListener("click", () =>{
+    const modal = document.querySelector(".modal");
+    console.log("aqui")
+    if(button.classList.contains("active")){
+        makeOrder();
+        modal.classList.add("active");
+    }else{
+        console.log("nope")
+    }
+})

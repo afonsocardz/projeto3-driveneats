@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function () {
     const eles = document.querySelectorAll('#list');
     let pos = { left: 0, x: 0 };
@@ -6,16 +5,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const mouseDownHandler = function (e) {
             ele.style.cursor = 'grabbing';
             ele.style.userSelect = 'none';
-
-
             pos = {
                 left: ele.scrollLeft,
 
                 // Get the current mouse position
                 x: e.clientX,
-
             };
-
             document.addEventListener('mousemove', mouseMoveHandler);
             document.addEventListener('mouseup', mouseUpHandler);
 
@@ -24,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const mouseMoveHandler = function (e) {
             // How far the mouse has been moved
             const dx = e.clientX - pos.x;
-
 
             // Scroll the element
 
@@ -37,37 +31,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
             document.removeEventListener('mousemove', mouseMoveHandler);
             document.removeEventListener('mouseup', mouseUpHandler);
-
         };
 
         // Attach the handler
         ele.addEventListener('mousedown', mouseDownHandler);
 
     });
-
-
-
-
-    //select one item
-
-
-
-
-
-
-
-    //button active
-
-    const buttonCheck = document.getElementById("order-button");
-
-    const buttonActive = function () {
-
-        buttonCheck.classList.add("active");
-
-
-    };
-
-    buttonCheck.addEventListener('click', buttonActive);
 });
 function selectedItem(elemento) {
     let isSelected;
@@ -78,7 +47,23 @@ function selectedItem(elemento) {
 
     //possivel selecionar e deselecionar
     elemento.classList.add("active");
-    if (elemento !== null) {
-        isSelected.classList.remove("active");
+
+    if (elemento === null) return
+    isSelected.classList.remove("active");
+}
+
+const checkOrder = () => {
+    const isAllCheck = document.querySelectorAll("li.active").length;
+    const buttonCheck = document.getElementById("order-button");
+    if (isAllCheck === 3) {
+        buttonCheck.classList.add("active");
+        buttonCheck.textContent = "Fechar Pedido!";
+    }else{
+        buttonCheck.textContent = "Selecione os 3 itens para fechar o pedido";
+        buttonCheck.classList.remove("active");
     }
 }
+
+window.addEventListener("click", checkOrder);
+
+

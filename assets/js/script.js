@@ -48,8 +48,10 @@ function selectedItem(elemento) {
     //possivel selecionar e deselecionar
     elemento.classList.add("active");
 
-    if (elemento === null) return
-    isSelected.classList.remove("active");
+    
+    if (isSelected !== null) {
+        isSelected.classList.remove("active");
+    }
 }
 
 const checkOrder = () => {
@@ -58,7 +60,7 @@ const checkOrder = () => {
     if (isAllCheck === 3) {
         buttonCheck.classList.add("active");
         buttonCheck.textContent = "Fechar Pedido!";
-    }else{
+    } else {
         buttonCheck.textContent = "Selecione os 3 itens para fechar o pedido";
         buttonCheck.classList.remove("active");
     }

@@ -138,6 +138,10 @@ const finishOrder = (order, name, address) =>  {
     window.open(url,'_blank');
 }
 
+function isEmpty(value){
+    return (typeof value === "undefined" || value === null);
+}
+
 let orderArray = [];
 
 const buttonHandler = (element) => {
@@ -146,7 +150,7 @@ const buttonHandler = (element) => {
         const nome = prompt("Qual é o seu nome?");
         const endereço = prompt("Qual é o seu endereço?");
         console.log("finaliza pedido");
-        if (nome !== null || endereço !== null){
+        if (isEmpty(nome) && isEmpty(endereço) ){
             finishOrder(orderArray, nome, endereço);
             return
         }

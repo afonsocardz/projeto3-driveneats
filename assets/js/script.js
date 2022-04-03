@@ -139,7 +139,7 @@ const finishOrder = (order, name, address) =>  {
 }
 
 function isEmpty(value){
-    return (typeof value === "undefined" || value === null);
+    return (typeof value !== 'undefined' && value);
 }
 
 let orderArray = [];
@@ -148,10 +148,10 @@ const buttonHandler = (element) => {
     const modal = document.querySelector(".modal");
     if(element.classList.contains("confirm")){
         const nome = prompt("Qual é o seu nome?");
-        const endereço = prompt("Qual é o seu endereço?");
+        const endereco = prompt("Qual é o seu endereço?");
         console.log("finaliza pedido");
-        if (isEmpty(nome) && isEmpty(endereço) ){
-            finishOrder(orderArray, nome, endereço);
+        if (isEmpty(nome) && isEmpty(endereco) ){
+            finishOrder(orderArray, nome, endereco);
             return
         }
         alert("Por favor! Informar nome e endereço!")

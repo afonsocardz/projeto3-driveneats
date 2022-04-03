@@ -43,11 +43,17 @@ body {
 /* MODAL  */
 
 .modal {
-    display: none;
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in;
+    overflow: hidden;
 }
 
 .modal.active {
     display: flex;
+    opacity: 1;
+    visibility: visible;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -65,17 +71,27 @@ body {
     align-items: center;
     width: 400px;
     background-color: #50D074;
-    border-radius: 25px;
-    padding-bottom: 20px
+    border-radius: 9px;
+    padding-bottom: 20px;
+    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.25));
 }
 
 .order-checkout  button.confirm{
-    width: 70%;
+    font-size: 22px;
+    font-weight: bold;
+    color: #50D074;
+    width: 80%;
     height: 50px;
-    border-radius: 25px;
+    border-radius: 50px;
     background-color: white;
     font-weight: bold;
     margin-bottom: 15px;
+}
+
+.order-checkout button.cancel{
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
 }
 
 table{
@@ -84,8 +100,6 @@ table{
     display: flex;
     justify-content: center;
     align-items: center;
-    
-
 }
 
 
@@ -96,6 +110,7 @@ tbody{
 
 tr {
     font-size: 22px;
+    font-weight: 400;
     width: 100%;
     margin: 13px 0px;
     display: flex;
@@ -105,6 +120,12 @@ tr {
 
 tr:first-child {
     justify-content: center;
+    font-weight: bold;
+    margin-bottom:28px;
+}
+
+tr:last-child{
+    font-weight: bold;
 }
 
 /* TOPBAR */
@@ -175,7 +196,7 @@ li {
     height: 216px;
     padding: 5px;
     margin-right: 10px;
-    border-radius: 5px;
+    border-radius: 9px;
     transition: background-color 0.2s ease-in;
 }
 
@@ -237,7 +258,7 @@ img {
 }
 
 #order-button {
-    border-radius: 15px;
+    border-radius: 50px;
     width: 95%;
     height: 52px;
     padding: 0 20px;

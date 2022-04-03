@@ -12,14 +12,16 @@
 
 <body>
     <div class="container">
-        <div class="modal">
-            <table>
-                <tr>
-                    <th>Confirme seu pedido</th>
-                </tr>
-            </table>
-            <button>Tudo certo, pode pedir!</button>
-            <button>Cancelar</button>
+        <div onclick="buttonHandler(this);" class="modal">
+            <div class="order-checkout">
+                <table>
+                    <tr>
+                        <th>Confirme seu pedido</th>
+                    </tr>
+                </table>
+                <button onclick="buttonHandler(this);" class="confirm">Tudo certo, pode pedir!</button>
+                <button onclick="buttonHandler(this);" class="cancel">Cancelar</button>
+            </div>
         </div>
         <div class="topbar">
             <div class="logo">
@@ -38,6 +40,7 @@
                                 <h4>Frango Yin Yang</h4>
                                 <p>Um pouco de batata, um pouco de salada</p>
                                 <span>R$14,90</span>
+                                <img src="./assets/img/check.svg" alt="">
                             </div>
                         </li>
                         <li onclick="selectedItem(this)">
@@ -46,7 +49,9 @@
                                 <h4>Frango Yin Yang</h4>
                                 <p>Um pouco de batata, um pouco de salada</p>
                                 <span>R$14,90</span>
+                                <img src="./assets/img/check.svg" alt="">
                             </div>
+
                         </li>
                         <li onclick="selectedItem(this)">
                             <div class="item-box">
@@ -54,6 +59,7 @@
                                 <h4>Frango Yin Yang</h4>
                                 <p>Um pouco de batata, um pouco de salada</p>
                                 <span>R$14,90</span>
+                                <img src="./assets/img/check.svg" alt="">
                             </div>
                         </li>
                     </ul>
@@ -65,26 +71,29 @@
                     <ul class="drinks">
                         <li onclick="selectedItem(this)">
                             <div class="item-box">
-                                <img src="./assets/img/img1.jpg" alt="">
-                                <h4>Frango Yin Yang</h4>
-                                <p>Um pouco de batata, um pouco de salada</p>
-                                <span>R$14,90</span>
+                                <img src="./assets/img/drink.jpg" alt="">
+                                <h4>Coquinha Gelada</h4>
+                                <p>Lata 350ml</p>
+                                <span>R$4,90</span>
+                                <img src="./assets/img/check.svg" alt="">
                             </div>
                         </li>
                         <li onclick="selectedItem(this)">
                             <div class="item-box">
-                                <img src="./assets/img/img1.jpg" alt="">
-                                <h4>Frango Yin Yang</h4>
-                                <p>Um pouco de batata, um pouco de salada</p>
-                                <span>R$14,90</span>
+                                <img src="./assets/img/drink.jpg" alt="">
+                                <h4>Coquinha Gelada</h4>
+                                <p>Lata 350ml</p>
+                                <span>R$4,90</span>
+                                <img src="./assets/img/check.svg" alt="">
                             </div>
                         </li>
                         <li onclick="selectedItem(this)">
                             <div class="item-box">
-                                <img src="./assets/img/img1.jpg" alt="">
-                                <h4>Frango Yin Yang</h4>
-                                <p>Um pouco de batata, um pouco de salada</p>
-                                <span>R$14,90</span>
+                                <img src="./assets/img/drink.jpg" alt="">
+                                <h4>Coquinha Gelada</h4>
+                                <p>Lata 350ml</p>
+                                <span>R$4,90</span>
+                                <img src="./assets/img/check.svg" alt="">
                             </div>
                         </li>
                     </ul>
@@ -96,26 +105,29 @@
                     <ul class="diserts">
                         <li onclick="selectedItem(this)">
                             <div class="item-box">
-                                <img src="./assets/img/img1.jpg" alt="">
-                                <h4>Frango Yin Yang</h4>
-                                <p>Um pouco de batata, um pouco de salada</p>
-                                <span>R$14,90</span>
+                                <img src="./assets/img/disert.jpg" alt="">
+                                <h4>Pudim</h4>
+                                <p>Apenas pudim</p>
+                                <span>R$7,90</span>
+                                <img src="./assets/img/check.svg" alt="">
                             </div>
                         </li>
                         <li onclick="selectedItem(this)">
                             <div class="item-box">
-                                <img src="./assets/img/img1.jpg" alt="">
-                                <h4>Frango Yin Yang</h4>
-                                <p>Um pouco de batata, um pouco de salada</p>
-                                <span>R$14,90</span>
+                                <img src="./assets/img/disert.jpg" alt="">
+                                <h4>Pudim</h4>
+                                <p>Apenas pudim</p>
+                                <span>R$7,90</span>
+                                <img src="./assets/img/check.svg" alt="">
                             </div>
                         </li>
                         <li onclick="selectedItem(this)">
                             <div class="item-box">
-                                <img src="./assets/img/img1.jpg" alt="">
-                                <h4>Frango Yin Yang</h4>
-                                <p>Um pouco de batata, um pouco de salada</p>
-                                <span>R$14,90</span>
+                                <img src="./assets/img/disert.jpg" alt="">
+                                <h4>Pudim Supremo</h4>
+                                <p>Apenas pudim</p>
+                                <span>R$17,90</span>
+                                <img src="./assets/img/check.svg" alt="">
                             </div>
                         </li>
                     </ul>
@@ -123,7 +135,7 @@
             </div>
         </div>
         <div class="checkout-container">
-            <button id="order-button">Selecione os 3 itens
+            <button id="order-button" onclick="buttonHandler(this);">Selecione os 3 itens
                 para fechar o pedido</button>
         </div>
     </div>

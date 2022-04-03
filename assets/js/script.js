@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function () {
             const dx = e.clientX - pos.x;
 
             // Scroll the element
-
             ele.scrollLeft = pos.left - dx;
         };
 
@@ -40,20 +39,22 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-
 function selectedItem(elemento) {
     let isSelected;
     let parent = elemento.parentElement;
-    let classSelection = `.${parent.className} .active`;
+    let classSelection = `.${parent.className} > .active`;
+    let checkIcon = elemento.querySelector(".item-box img:last-child");
 
     isSelected = document.querySelector(classSelection);
 
     //possivel selecionar e deselecionar
     elemento.classList.add("active");
-
-
+    checkIcon.classList.add("active");
+    
     if (isSelected !== null) {
+        checkIcon = isSelected.querySelector(".item-box img:last-child");
         isSelected.classList.remove("active");
+        checkIcon.classList.remove("active");
     }
     checkOrder();
 }
@@ -70,66 +71,102 @@ const checkOrder = () => {
     }
 }
 
+function createRow (table,row, text){
+    let coluna = document.createElement("td");
+    coluna.textContent = text;
+    row.append(coluna);
+    table.append(row);
+}
+
+const removeOrder = () =>{
+    let tbody = document.querySelectorAll("tbody tr");
+    tbody.forEach(element => {
+        if (element.rowIndex !== 0){
+            element.remove();
+        }
+    });
+}
 
 const makeOrder = () => {
     let valores = [];
-    let item = [];
-    let totalPedido = 0;
+    let valorTotal = 0;
+    let pedido = [];
     const choosedElements = document.querySelectorAll("li.active .item-box");
     const table = document.querySelector("table tbody")
-    let linhaTotal = document.createElement("tr");
-    let colunaTotal = document.createElement("td");
-    let colunaSoma = document.createElement("td");
-
-    console.log("fora")
+    let rowTotal = document.createElement("tr");
 
     choosedElements.forEach(element => {
-        let colunaName = document.createElement("td");
-        let colunaValue = document.createElement("td");
-        let linha = document.createElement("tr");
-        console.log("dentro")
-        item.push(element.children[1].outerText);
-        item.push(element.children[3].outerText);
-        let valor = item[1].replace("R$", "");
+        let row = document.createElement("tr");
+        let pName = element.children[1].outerText;
+        let pValue = element.children[3].outerText;
+        let valor = element.children[3].outerText.replace("R$", "");
+
+        let arrayKey = element.parentElement.parentElement.className;
+        
+        pedido[arrayKey] = pName;
+        
         valor = valor.replace(",", ".");
         valor = Number(valor);
         valores.push(valor);
 
-        //criar colunas e linha
-        //add product name column
-        colunaName.textContent = item[0];
-        linha.append(colunaName);
-
-        //add value column
-        colunaValue.textContent = item[1];
-        linha.append(colunaValue);
-
-        table.append(linha);
-
+        createRow(table, row, pName);
+        createRow(table, row, pValue );
     });
 
     valores.forEach(valor => {
-        totalPedido = totalPedido + valor;
+        valorTotal += valor;
     });
 
-    colunaTotal.textContent = "Total";
-    
-    totalPedido = totalPedido.toFixed(2);
-    totalPedido = totalPedido.toString().replace(".",",");
-    colunaSoma.textContent = `R$${totalPedido}`;
-    linhaTotal.append(colunaTotal);
-    linhaTotal.append(colunaSoma);
-    table.append(linhaTotal);
-}
-const button = document.getElementById("order-button");
+    valorTotal = valorTotal.toFixed(2);
+    valorTotal = valorTotal.toString().replace(".",",");
+    valorTotal = `R$${valorTotal}`;
+    createRow(table, rowTotal, "Total");
+    createRow(table, rowTotal, valorTotal);
 
-button.addEventListener("click", () =>{
+    pedido['total'] =  valorTotal;
+
+    return pedido;
+}
+
+const finishOrder = (order, name, address) =>  {
+    
+    const number = "5515991642276";
+    const message = encodeURIComponent(`Olá, gostaria de fazer o pedido:
+    - Prato: ${order.dishes}
+    - Bebida: ${order.drinks}
+    - Sobremesa: ${order.diserts}
+    Total: ${order.total}
+    
+    Nome: ${name}
+    Endereço: ${address}`);
+
+    console.log("aqui");
+    const url = `https://api.whatsapp.com/send?phone=${number}&text=${message}`;
+
+    window.open(url,'_blank');
+}
+
+let orderArray = [];
+
+const buttonHandler = (element) => {
     const modal = document.querySelector(".modal");
-    console.log("aqui")
-    if(button.classList.contains("active")){
-        makeOrder();
-        modal.classList.add("active");
-    }else{
-        console.log("nope")
+    if(element.classList.contains("confirm")){
+        const nome = prompt("Qual é o seu nome?");
+        const endereço = prompt("Qual é o seu endereço?");
+        console.log("finaliza pedido");
+        if (nome !== null || endereço !== null){
+            finishOrder(orderArray, nome, endereço);
+            return
+        }
+        alert("Por favor! Informar nome e endereço!")
     }
-})
+    if(modal.classList.contains("active")){
+        removeOrder();
+        modal.classList.remove("active");        
+    }
+    if(element.classList.contains("active")){
+        orderArray = makeOrder();
+        console.log("Criou pedido");
+        modal.classList.add("active");
+    }    
+}

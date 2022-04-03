@@ -131,15 +131,7 @@ const makeOrder = () => {
 const finishOrder = (order, name, address) =>  {
     
     const number = "5515991642276";
-    const message = encodeURIComponent(`Olá, gostaria de fazer o pedido:
-    - Prato: ${order.dishes}
-    - Bebida: ${order.drinks}
-    - Sobremesa: ${order.diserts}
-    Total: ${order.total}
-    
-    Nome: ${name}
-    Endereço: ${address}`);
-
+    const message = encodeURIComponent(`Olá, gostaria de fazer o pedido:\n- Prato: ${order.dishes}\n- Bebida: ${order.drinks}\n- Sobremesa: ${order.diserts}\nTotal: ${order.total}\n\nNome: ${name}\nEndereço: ${address}`);
     console.log("aqui");
     const url = `https://api.whatsapp.com/send?phone=${number}&text=${message}`;
 
